@@ -8,7 +8,6 @@
     </parent>
 
     <artifactId>rpc-framework-api</artifactId>
-    <packaging>jar</packaging>
 
 
     <properties>
