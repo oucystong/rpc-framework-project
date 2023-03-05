@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 /**
  * @Description: RPC请求模型
  * @Author: Mr.Tong
@@ -13,7 +15,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class RpcRequest {
+public class RpcRequest implements Serializable {
 
     /**
      * @Description: RPC请求ID
