@@ -16,7 +16,5 @@ import java.security.Provider;
 public class ConsumerApplication {
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(ConsumerApplication.class, args);
-        ConsumerUseService bean = run.getBean(ConsumerUseService.class);
-        bean.testServiceA("xiaotong");
     }
 }
