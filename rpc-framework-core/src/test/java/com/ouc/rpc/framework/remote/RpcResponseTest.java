@@ -10,17 +10,10 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 public class RpcResponseTest {
 
-
-
-
-
-
     @Test
     void testSetGet() {
         RpcResponse rpcResponse = new RpcResponse();
         rpcResponse.setIsSuccess(false);
         log.info("rpc response is {}", rpcResponse.getIsSuccess().toString());
     }
-
-
 }
