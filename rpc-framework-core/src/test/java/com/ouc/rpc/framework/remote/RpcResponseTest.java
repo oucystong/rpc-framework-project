@@ -17,4 +17,6 @@ public class RpcResponseTest {
         rpcResponse.setIsSuccess(false);
         log.info("rpc response is {}", rpcResponse.getIsSuccess().toString());
     }
+
+
 }
