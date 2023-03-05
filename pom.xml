@@ -22,7 +22,6 @@
     </properties>
 
 
-
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
@@ -47,6 +46,8 @@
 
     </dependencies>
 
+
+    <!--    创建SpringBoot子模块-->
     <dependencyManagement>
         <dependencies>
             <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-dependencies -->
