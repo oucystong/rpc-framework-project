@@ -1,9 +1,18 @@
 package com.ouc.rpc.framework.remote;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  * @Description: RPC请求模型
  * @Author: Mr.Tong
  */
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class RpcRequest {
 
     /**
