@@ -11,6 +11,10 @@ import org.junit.jupiter.api.Test;
 public class RpcResponseTest {
 
 
+
+
+
+
     @Test
     void testSetGet() {
         RpcResponse rpcResponse = new RpcResponse();
