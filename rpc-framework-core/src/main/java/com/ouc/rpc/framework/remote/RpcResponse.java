@@ -1,9 +1,6 @@
 package com.ouc.rpc.framework.remote;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -15,6 +12,7 @@ import java.io.Serializable;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class RpcResponse implements Serializable {
     /**
      * @Description: RPC请求ID
