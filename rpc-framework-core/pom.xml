@@ -89,7 +89,6 @@
             <artifactId>protobuf-java</artifactId>
             <version>3.20.1</version>
         </dependency>
-
         <!--        实现PROTOSTUFF序列化和反序列化-->
         <dependency>
             <groupId>io.protostuff</groupId>
