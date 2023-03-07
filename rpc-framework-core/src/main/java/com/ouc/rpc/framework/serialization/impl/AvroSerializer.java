@@ -19,7 +19,7 @@ public class AvroSerializer implements Serializer {
     private static final DecoderFactory DECODER_FACTORY = DecoderFactory.get();
 
     @Override
-    public <T> byte[] serialize(T obj) throws IOException {
+    public <T> byte[] serialize(T obj){
 //        Schema schema = new ReflectDatumWriter<>(obj.getClass()).getSchema();
 //        ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //        BinaryEncoder encoder = ENCODER_FACTORY.binaryEncoder(baos, null);
@@ -32,7 +32,7 @@ public class AvroSerializer implements Serializer {
     }
 
     @Override
-    public <T> T deserialize(byte[] bytes, Class<T> clazz) throws IOException {
+    public <T> T deserialize(byte[] bytes, Class<T> clazz) {
 //        Schema schema = new ReflectDatumReader<>(clazz).getSchema();
 //        BinaryDecoder decoder = DECODER_FACTORY.binaryDecoder(bytes, null);
 //        DatumReader<T> reader = new ReflectDatumReader<>(schema);

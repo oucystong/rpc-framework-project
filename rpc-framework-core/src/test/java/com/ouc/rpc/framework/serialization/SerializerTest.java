@@ -85,4 +85,46 @@ public class SerializerTest {
         RpcRequest deserialize = hessianSerializer.deserialize(serialize, RpcRequest.class);
         log.info("hessian deserialize result:{}", deserialize);
     }
+
+
+    @Test
+    void testKryoSerializer() {
+        KryoSerializer kryoSerializer = new KryoSerializer();
+        // 序列化测试
+        byte[] serialize = kryoSerializer.serialize(rpcRequest);
+        log.info("kryo serialize result: {}", Arrays.toString(serialize));
+        log.info("kryo serialize result length: {}", serialize.length);
+        // 反序列化测试
+        RpcRequest deserialize = kryoSerializer.deserialize(serialize, RpcRequest.class);
+        log.info("kryo deserialize result:{}", deserialize);
+    }
+
+
+    @Test
+    void testMultipleSerializer() {
+        MultipleSerializer multipleSerializer = new MultipleSerializer();
+        // 序列化测试
+        byte[] serialize = multipleSerializer.serialize(rpcRequest);
+        log.info("multiple serialize result: {}", Arrays.toString(serialize));
+        log.info("multiple serialize result length: {}", serialize.length);
+        // 反序列化测试
+        RpcRequest deserialize = multipleSerializer.deserialize(serialize, RpcRequest.class);
+        log.info("multiple deserialize result:{}", deserialize);
+    }
+
+
+    @Test
+    void testProtoStuffSerializer() {
+        ProtoStuffSerializer protoStuffSerializer = new ProtoStuffSerializer();
+        // 序列化测试
+        byte[] serialize = protoStuffSerializer.serialize(rpcRequest);
+        log.info("protostuff serialize result: {}", Arrays.toString(serialize));
+        log.info("protostuff serialize result length: {}", serialize.length);
+        // 反序列化测试
+        RpcRequest deserialize = protoStuffSerializer.deserialize(serialize, RpcRequest.class);
+        log.info("protostuff deserialize result:{}", deserialize);
+    }
+
+
+
 }

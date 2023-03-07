@@ -14,11 +14,11 @@ public interface Serializer {
     /**
      * @Description: 序列化方法
      */
-    <T> byte[] serialize(T obj) throws IOException;
+    <T> byte[] serialize(T obj);
 
     /**
      * @Description: 反序列化方法
      */
-    <T> T deserialize(byte[] bytes, Class<T> clazz) throws IOException;
+    <T> T deserialize(byte[] bytes, Class<T> clazz);
 
 }

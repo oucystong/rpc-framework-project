@@ -11,7 +11,7 @@ import java.io.IOException;
 public class ProtoBufSerializer implements Serializer {
 
     @Override
-    public <T> byte[] serialize(T obj) throws IOException {
+    public <T> byte[] serialize(T obj) {
 //        Schema schema = RuntimeSchema.getSchema(obj.getClass());
 //        LinkedBuffer buffer = LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE);
 //        byte[] bytes = ProtostuffIOUtil.toByteArray(obj, schema, buffer);
@@ -21,7 +21,7 @@ public class ProtoBufSerializer implements Serializer {
     }
 
     @Override
-    public <T> T deserialize(byte[] bytes, Class<T> clazz) throws IOException {
+    public <T> T deserialize(byte[] bytes, Class<T> clazz){
         return null;
     }
 }

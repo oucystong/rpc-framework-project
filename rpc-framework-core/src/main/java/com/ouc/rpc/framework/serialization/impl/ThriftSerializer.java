@@ -16,7 +16,7 @@ public class ThriftSerializer implements Serializer {
 
 
     @Override
-    public <T> byte[] serialize(T obj) throws IOException {
+    public <T> byte[] serialize(T obj) {
 //        TSerializer serializer = null;
 //        try {
 //            serializer = new TSerializer(new TBinaryProtocol.Factory());
@@ -28,7 +28,7 @@ public class ThriftSerializer implements Serializer {
     }
 
     @Override
-    public <T> T deserialize(byte[] bytes, Class<T> clazz) throws IOException {
+    public <T> T deserialize(byte[] bytes, Class<T> clazz){
 //        TDeserializer deserializer = new TDeserializer(new TBinaryProtocol.Factory());
 //        T obj = clazz.newInstance();
 //        deserializer.deserialize(obj, bytes);

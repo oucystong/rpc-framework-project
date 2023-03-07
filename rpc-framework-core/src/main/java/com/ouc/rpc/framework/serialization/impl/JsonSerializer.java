@@ -16,12 +16,16 @@ public class JsonSerializer implements Serializer {
     @Override
     public <T> byte[] serialize(T obj) {
         String json = JSON.toJSONString(obj);
-        return json.getBytes();
+        byte[] bytes = json.getBytes();
+        log.info("json serialize successfully");
+        return bytes;
     }
 
     @Override
     public <T> T deserialize(byte[] bytes, Class<T> clazz) {
         String json = new String(bytes);
-        return JSON.parseObject(json, clazz);
+        T t = JSON.parseObject(json, clazz);
+        log.info("json deserialize successfully");
+        return t;
     }
 }
