@@ -1,0 +1,2 @@
+run=com.ouc.rpc.framework.spi.model.Run
+football=com.ouc.rpc.framework.spi.model.Football

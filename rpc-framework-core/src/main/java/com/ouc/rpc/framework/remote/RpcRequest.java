@@ -33,7 +33,7 @@ public class RpcRequest implements Serializable {
     /**
      * @Description: 请求的参数类型
      */
-    private String[] types;
+    private Class[] types;
 
     /**
      * @Description: 请求的参数值

@@ -8,3 +8,4 @@ hessian=com.ouc.rpc.framework.serialization.impl.HessianSerializer
 avro=com.ouc.rpc.framework.serialization.impl.AvroSerializer
 fst=com.ouc.rpc.framework.serialization.impl.FstSerializer
 protostuff=com.ouc.rpc.framework.serialization.impl.ProtoStuffSerializer
+multiple=com.ouc.rpc.framework.serialization.impl.MultipleSerializer

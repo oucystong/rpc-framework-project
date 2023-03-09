@@ -20,7 +20,7 @@ public class SerializerTest {
         rpcRequest.setRequestId("id_1");
         rpcRequest.setMethodName("method");
         rpcRequest.setInterfaceName("interface");
-        rpcRequest.setTypes(new String[]{"String", "String"});
+        rpcRequest.setTypes(new Class[]{String.class, String.class});
         rpcRequest.setArgs(new Object[]{"Obj1", "Obj2"});
     }
 
@@ -124,7 +124,6 @@ public class SerializerTest {
         RpcRequest deserialize = protoStuffSerializer.deserialize(serialize, RpcRequest.class);
         log.info("protostuff deserialize result:{}", deserialize);
     }
-
 
 
 }
