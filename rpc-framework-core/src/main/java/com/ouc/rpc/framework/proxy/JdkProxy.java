@@ -17,13 +17,10 @@ import java.lang.reflect.Proxy;
 public class JdkProxy implements ProxyService {
 
 
-    @Autowired
-    private JdkInvocationHandler jdkInvocationHandler;
-
     @Override
     public <T> T getProxy(Class<T> interfaceClass) {
         // 使用Jdk动态代理创建代理对象
-        Object o = Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class[]{interfaceClass}, jdkInvocationHandler);
+        Object o = Proxy.newProxyInstance(interfaceClass.getClassLoader(), new Class[]{interfaceClass}, new JdkInvocationHandler());
         // 返回代理对象
         return interfaceClass.cast(o);
     }

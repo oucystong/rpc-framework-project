@@ -11,13 +11,10 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 @Slf4j
 public class BeanProcessor implements BeanPostProcessor {
 
-    /**
-     * @Description: 初始化之前
-     */
+
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        log.info("后置处理器：初始化之前执行 Bean {} : BeanName {}", bean, beanName);
-        return bean;
+        return BeanPostProcessor.super.postProcessBeforeInitialization(bean, beanName);
     }
 
     /**

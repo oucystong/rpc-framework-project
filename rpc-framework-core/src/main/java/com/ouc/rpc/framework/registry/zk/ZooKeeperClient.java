@@ -3,22 +3,29 @@ package com.ouc.rpc.framework.registry.zk;
 import com.ouc.rpc.framework.constant.RpcConstant;
 import com.ouc.rpc.framework.registry.ZKClient;
 import com.ouc.rpc.framework.util.PropertiesFileUtil;
+import com.ouc.rpc.framework.util.ReferenceServiceUtil;
 import com.ouc.rpc.framework.util.RpcCommonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.api.CuratorEvent;
+import org.apache.curator.framework.api.CuratorListener;
 import org.apache.curator.framework.imps.CuratorFrameworkState;
+import org.apache.curator.framework.recipes.cache.ChildData;
+import org.apache.curator.framework.recipes.cache.PathChildrenCache;
+import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
+import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
+import org.apache.curator.framework.state.ConnectionState;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.curator.retry.RetryNTimes;
 import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.WatchedEvent;
+import org.apache.zookeeper.Watcher;
 
 
 import java.net.InetSocketAddress;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -39,42 +46,29 @@ public class ZooKeeperClient {
 
     private CuratorFramework zkClient;
 
+
     /**
-     * Gets the children under a node
-     *
-     * @param rpcServiceName rpc service name eg:github.javaguide.HelloServicetest2version1
-     * @return All child nodes under the specified node
+     * @Description: ZK客户端构造方法
      */
-    public static List<String> getChildrenNodes(CuratorFramework zkClient, String rpcServiceName) {
-        if (SERVICE_ADDRESS_MAP.containsKey(rpcServiceName)) {
-            return SERVICE_ADDRESS_MAP.get(rpcServiceName);
-        }
-        List<String> result = null;
-        String servicePath = ZK_REGISTER_ROOT_PATH + "/" + rpcServiceName;
-        try {
-            result = zkClient.getChildren().forPath(servicePath);
-            SERVICE_ADDRESS_MAP.put(rpcServiceName, result);
-//            registerWatcher(rpcServiceName, zkClient);
-        } catch (Exception e) {
-            log.error("get children nodes for path [{}] fail", servicePath);
-        }
-        return result;
+    private ZooKeeperClient(String zookeeperAddress) {
+        // 连接重试策略 | 最大重试次数为3 | 每次重试时间呈指数增加
+        RetryPolicy retryPolicy = new ExponentialBackoffRetry(BASE_SLEEP_TIME, MAX_RETRIES);
+        // 创建ZK客户端
+        zkClient = CuratorFrameworkFactory.builder().connectString(zookeeperAddress).sessionTimeoutMs(1000).retryPolicy(retryPolicy).build();
+        log.info("zk client start connect the zk server");
+        zkClient.start();
+        log.info("zk successfully connect the zk server");
     }
 
     /**
-     * Empty the registry of data
+     * @Description: 获取ZK客户端实例
      */
-    public static void clearRegistry(CuratorFramework zkClient, InetSocketAddress inetSocketAddress) {
-        REGISTERED_PATH_SET.stream().parallel().forEach(p -> {
-            try {
-                if (p.endsWith(inetSocketAddress.toString())) {
-                    zkClient.delete().forPath(p);
-                }
-            } catch (Exception e) {
-                log.error("clear registry for path [{}] fail", p);
-            }
-        });
-        log.info("All registered services on the server are cleared:[{}]", REGISTERED_PATH_SET.toString());
+    public static ZooKeeperClient getInstance(String zookeeperAddress) {
+        if (null == instance) {
+            instance = new ZooKeeperClient(zookeeperAddress);
+        }
+        log.info("zk client has been build and return zk client");
+        return instance;
     }
 
     /**
@@ -141,30 +135,6 @@ public class ZooKeeperClient {
         }
     }
 
-    /**
-     * @Description: ZK客户端构造方法
-     */
-    private ZooKeeperClient(String zookeeperAddress) {
-        // 连接重试策略 | 最大重试次数为3 | 每次重试时间呈指数增加
-        RetryPolicy retryPolicy = new ExponentialBackoffRetry(BASE_SLEEP_TIME, MAX_RETRIES);
-        // 创建ZK客户端
-        zkClient = CuratorFrameworkFactory.builder().connectString(zookeeperAddress).retryPolicy(retryPolicy).build();
-        log.info("zk client start connect the zk server");
-        zkClient.start();
-        log.info("zk successfully connect the zk server");
-    }
-
-    /**
-     * @Description: 获取ZK客户端实例
-     */
-    public static ZooKeeperClient getInstance(String zookeeperAddress) {
-        if (null == instance) {
-            instance = new ZooKeeperClient(zookeeperAddress);
-        }
-        log.info("zk client has been build and return zk client");
-        return instance;
-    }
-
 
     /**
      * @Description: 创建临时/持久子路径
@@ -180,18 +150,70 @@ public class ZooKeeperClient {
     }
 
     /**
-     * Registers to listen for changes to the specified node
-     *
-     * @param rpcServiceName rpc service name eg:github.javaguide.HelloServicetest2version
+     * @Description: 获取特定路径下的子节点
      */
-//    private static void registerWatcher(String rpcServiceName, CuratorFramework zkClient) throws Exception {
-//        String servicePath = ZK_REGISTER_ROOT_PATH + "/" + rpcServiceName;
-//        PathChildrenCache pathChildrenCache = new PathChildrenCache(zkClient, servicePath, true);
-//        PathChildrenCacheListener pathChildrenCacheListener = (curatorFramework, pathChildrenCacheEvent) -> {
-//            List<String> serviceAddresses = curatorFramework.getChildren().forPath(servicePath);
-//            SERVICE_ADDRESS_MAP.put(rpcServiceName, serviceAddresses);
-//        };
-//        pathChildrenCache.getListenable().addListener(pathChildrenCacheListener);
-//        pathChildrenCache.start();
-//    }
+    public List<String> getChildNodes(String path) {
+        // 路径不存在则返回空列表
+        if (!exists(path)) {
+            return new ArrayList<>();
+        }
+        List<String> childNodes = new ArrayList<>();
+        // 路径存在
+        try {
+            childNodes = zkClient.getChildren().forPath(path);
+            log.info("zk client get child nodes successfully");
+        } catch (Exception e) {
+            log.error("zk client get child nodes has exception: {}", e);
+        }
+        return childNodes;
+    }
+
+    /**
+     * @Description: 获取ZooKeeper服务器中节点的数据
+     */
+    public byte[] getNodeData(String path) {
+        // 路径不存在
+        if (!exists(path)) {
+            return null;
+        }
+        byte[] nodeData = null;
+        // 路径存在
+        try {
+            nodeData = zkClient.getData().forPath(path);
+            log.info("zk client get node data successfully");
+        } catch (Exception e) {
+            log.error("zk client get node data has exception:{}", e);
+        }
+        return nodeData;
+    }
+
+
+    /**
+     * @Description: 订阅ZooKeeper中路径和数据的变化 | 添加监听器 | 回调函数
+     */
+    public void subscribeChildChange(String childPath, String referenceServiceName) throws Exception {
+        log.info("start subscription service instance: [" + childPath + "]");
+        PathChildrenCache pathChildrenCache = new PathChildrenCache(zkClient, childPath, true);
+        pathChildrenCache.getListenable().addListener((client, event) -> {
+            // 监听器回调函数
+            switch (event.getType()) {
+                case CHILD_ADDED:
+                    ReferenceServiceUtil.get(referenceServiceName).getReferences();
+                    log.info("service instance changed: ==> instance add ==> {}", pathChildrenCache.getCurrentData());
+                    break;
+                case CHILD_REMOVED:
+                    ReferenceServiceUtil.get(referenceServiceName).getReferences();
+                    log.info("service instance changed: ==> instance remove ==> {}", pathChildrenCache.getCurrentData());
+                    break;
+                case CHILD_UPDATED:
+                    ReferenceServiceUtil.get(referenceServiceName).getReferences();
+                    log.info("service instance changed: ==> instance update ==> {}", pathChildrenCache.getCurrentData());
+                    break;
+                default:
+                    break;
+            }
+        });
+        pathChildrenCache.start(PathChildrenCache.StartMode.POST_INITIALIZED_EVENT);
+    }
+
 }

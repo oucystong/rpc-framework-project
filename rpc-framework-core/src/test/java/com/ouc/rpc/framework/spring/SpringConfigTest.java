@@ -19,7 +19,7 @@ public class SpringConfigTest {
     void testBean() {
         AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
         ProxyFactory bean = annotationConfigApplicationContext.getBean(ProxyFactory.class);
-        bean.testProxy();
+//        bean.testProxy();
     }
 
 

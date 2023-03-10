@@ -13,7 +13,6 @@ import java.util.Arrays;
  * @Author: Mr.Tong
  */
 @Slf4j
-@Component
 public class CglibMethodInterceptor implements MethodInterceptor {
 
 
@@ -28,6 +27,7 @@ public class CglibMethodInterceptor implements MethodInterceptor {
      */
     private Object invoke(String method, Object[] args, Class[] argTypes) {
         //
+        log.info("===+++");
         return null;
     }
 

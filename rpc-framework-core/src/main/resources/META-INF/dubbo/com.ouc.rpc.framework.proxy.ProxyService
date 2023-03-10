@@ -1,0 +1,3 @@
+jdk=com.ouc.rpc.framework.proxy.JdkProxy
+javassist=com.ouc.rpc.framework.proxy.JavassistProxy
+cglib=com.ouc.rpc.framework.proxy.CglibProxy

@@ -1,27 +1,31 @@
 package com.ouc.rpc.framework.consumer.app;
 
 
-import com.ouc.rpc.framework.ProviderService;
-import com.ouc.rpc.framework.proxy.ProxyFactory;
-import com.ouc.rpc.framework.spring.RpcSpringConfig;
+import com.ouc.rpc.framework.consumer.api.ConsumerService;
+import com.ouc.rpc.framework.consumer.config.ConsumerSpringConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
 
 /**
- * z
  *
  * @Description: 消费者主启动类
  * @Author: Mr.Tong
  */
 @Slf4j
 public class ConsumerApplication {
-    public static void main(String[] args) {
-        // 获得RPC框架容器
-        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(RpcSpringConfig.class);
-        // 获得RPC服务接口的代理对象-即获得本地存根
-        ProxyFactory proxyFactory = annotationConfigApplicationContext.getBean(ProxyFactory.class);
-        ProviderService providerService = proxyFactory.getProxy(ProviderService.class);
-        providerService.ServiceAMethod("ServiceAMethodTest");
-        proxyFactory.testProxy();
+    public static void main(String[] args) throws IOException {
+        // 获取项目容器
+        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(ConsumerSpringConfig.class);
+        // 获取Bean
+        ConsumerService consumerService = annotationConfigApplicationContext.getBean(ConsumerService.class);
+        // 使用Bean中的方法
+        log.info(consumerService.testAMethod("param1"));
+        log.info(consumerService.testBMethod("param1", "param2"));
+        // 等待系统输入
+        System.in.read();
     }
 }

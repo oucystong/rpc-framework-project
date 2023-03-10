@@ -2,11 +2,13 @@ package com.ouc.rpc.framework.spring.model;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.stereotype.Component;
 
 /**
  * @Description:
  * @Author: Mr.Tong
  */
+@Component
 @Slf4j
 public class User implements InitializingBean {
     private String username;

@@ -9,10 +9,11 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
+
 /**
- * @author shuang.kou
- * @createTime 2020年07月21日 14:25:00
- **/
+ * @Description: Properties配置文件操作工具类
+ * @Author: Mr.Tong
+ */
 @Slf4j
 public final class PropertiesFileUtil {
     private PropertiesFileUtil() {

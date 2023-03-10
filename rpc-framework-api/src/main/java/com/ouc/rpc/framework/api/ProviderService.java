@@ -1,4 +1,4 @@
-package com.ouc.rpc.framework;
+package com.ouc.rpc.framework.api;
 
 /**
  * @Description: 服务生产者提供的远程调用服务接口

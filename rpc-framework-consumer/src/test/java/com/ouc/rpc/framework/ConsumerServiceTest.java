@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
  * @Author: Mr.Tong
  */
 @Slf4j
-public class ConsumerUseServiceTest {
+public class ConsumerServiceTest {
 
 
     @Test

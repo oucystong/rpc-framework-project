@@ -25,7 +25,9 @@ public class RpcConstant {
      */
     public static final String RPC_APPLICATION_NAME = "rpc.application.name";
 
-
+    /**
+     * @Description: 提供的服务ID
+     */
     public static final String RPC_SERVICE_PROVIDER_ID = "rpc.service.provider.id";
 
     /**
@@ -37,11 +39,30 @@ public class RpcConstant {
      */
     public static final String RPC_SERVICE_PROVIDER_IMPL = "rpc.service.provider.impl";
 
+    /**
+     * @Description: 消费的服务ID
+     */
+    public static final String RPC_SERVICE_CONSUMER_ID = "rpc.service.consumer.id";
+
+    /**
+     * @Description: 服务消费者消费的服务名称
+     */
+    public static final String RPC_SERVICE_CONSUMER_NAME = "rpc.service.consumer.name";
+    /**
+     * @Description: 服务提供者消费的服务实现类
+     */
+    public static final String RPC_SERVICE_CONSUMER_IMPL = "rpc.service.consumer.impl";
+
 
     /**
      * @Description: 服务注册时保存节点数据时使用的序列化方式
      */
     public static final String RPC_ZK_NODE_SERIALIZER = "rpc.zk.node.serializer";
+
+    /**
+     * @Description: 实现存根所用的代理方式
+     */
+    public static final String RPC_STUB_PROXY = "rpc.stub.proxy";
 
     /**
      * @Description: ZK路径前缀

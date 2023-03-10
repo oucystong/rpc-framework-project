@@ -8,7 +8,7 @@ import java.io.IOException;
  * @Description: 序列化和反序列化接口
  * @Author: Mr.Tong
  */
-@SPI(value = "jdk")
+@SPI(value = "json")
 public interface Serializer {
 
     /**

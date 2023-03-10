@@ -41,6 +41,13 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.curator/curator-recipes -->
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.dubbo/dubbo-common -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>

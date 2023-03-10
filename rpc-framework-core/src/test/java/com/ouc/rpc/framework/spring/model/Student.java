@@ -14,5 +14,4 @@ import lombok.*;
 public class Student {
     private String userName;
     private String cardNumber;
-
 }

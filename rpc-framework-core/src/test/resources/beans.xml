@@ -4,7 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean class="com.ouc.rpc.framework.spring.model.Student" scope="prototype"></bean>
+    <bean class="com.ouc.rpc.framework.spring.model.Student" scope="prototype">
+        <property name="userName" value="test"></property>
+        <property name="cardNumber" value="12356"></property>
+     </bean>
     <!-- 使用init-method属性指定初始化方法 -->
     <!-- 使用destroy-method属性指定销毁方法 -->
     <bean class="com.ouc.rpc.framework.spring.model.User" scope="prototype" init-method="initMethod"

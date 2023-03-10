@@ -1,13 +1,13 @@
-package com.ouc.rpc.framework.api;
+package com.ouc.rpc.framework.provider.api;
 
-import com.ouc.rpc.framework.ProviderService;
-import org.springframework.stereotype.Component;
+import com.ouc.rpc.framework.api.ProviderService;
+import org.springframework.stereotype.Service;
 
 /**
  * @Description: 服务生产者提供的服务实现
  * @Author: Mr.Tong
  */
-@Component
+@Service
 public class ProviderServiceImpl implements ProviderService {
 
     @Override

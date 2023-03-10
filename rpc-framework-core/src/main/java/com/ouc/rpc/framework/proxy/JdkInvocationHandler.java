@@ -11,7 +11,6 @@ import java.lang.reflect.Method;
  * @Author: Mr.Tong
  */
 @Slf4j
-@Component
 public class JdkInvocationHandler implements InvocationHandler {
 
     @Override

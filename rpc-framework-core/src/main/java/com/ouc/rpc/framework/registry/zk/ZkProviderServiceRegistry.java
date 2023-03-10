@@ -1,0 +1,59 @@
+package com.ouc.rpc.framework.registry.zk;
+
+import com.ouc.rpc.framework.model.ExposeServiceModel;
+import com.ouc.rpc.framework.constant.RpcConstant;
+import com.ouc.rpc.framework.model.ZooKeeperAddressModel;
+import com.ouc.rpc.framework.registry.ServiceRegistry;
+import com.ouc.rpc.framework.serialization.Serializer;
+import com.ouc.rpc.framework.util.ApplicationContextUtil;
+import com.ouc.rpc.framework.util.PropertiesFileUtil;
+import com.ouc.rpc.framework.util.RpcCommonUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.common.extension.ExtensionLoader;
+
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Properties;
+
+/**
+ * @Description: 服务提供者服务注册实现类
+ * @Author: Mr.Tong
+ */
+@Slf4j
+public class ZkProviderServiceRegistry implements ServiceRegistry {
+
+    @Override
+    public void serviceRegistry() {
+        // 获取ReferenceServiceModel Bean中所有属性值
+        ExposeServiceModel exposeServiceModel = ApplicationContextUtil.getApplicationContext().getBean(ExposeServiceModel.class);
+        String exposeServiceName = exposeServiceModel.getExposeServiceName();
+        String providerInstanceIp = exposeServiceModel.getProviderInstanceIp();
+        String providerInstancePort = exposeServiceModel.getProviderInstancePort();
+
+        // 构造路径
+        String basePath = RpcConstant.BASE_PATH_PREFIX + exposeServiceName + RpcConstant.BASE_PATH_SERVICE_PROVIDER_SUFFIX;
+        String path = basePath + "/" + providerInstanceIp + "_" + providerInstancePort;
+
+        // 获取ZK服务器地址
+        ZooKeeperAddressModel zooKeeperAddressModel = ApplicationContextUtil.getApplicationContext().getBean(ZooKeeperAddressModel.class);
+        String zooKeeperAddress = zooKeeperAddressModel.getZooKeeperAddress();
+
+        // 获取ZK客户端
+        ZooKeeperClient zooKeeperClient = ZooKeeperClient.getInstance(zooKeeperAddress);
+
+        // 保存路径和节点
+        zooKeeperClient.createPath(basePath); // 持久化路径 | 不会随着实例下线而消失
+
+        // 序列化节点数据
+        ExtensionLoader<Serializer> serializerExtensionLoader = ExtensionLoader.getExtensionLoader(Serializer.class);
+        Serializer serializer = serializerExtensionLoader.getDefaultExtension(); // 序列化器
+
+        // 保存节点数据
+        zooKeeperClient.saveNode(path, serializer.serialize(exposeServiceModel));
+
+        log.info("service published the zk server successfully");
+    }
+
+
+}

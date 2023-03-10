@@ -35,9 +35,9 @@ public class SpringTest {
     public void testLife() {
         ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
         User user = ac.getBean(User.class);
+        Student bean = ac.getBean(Student.class);
         log.info("对象准备就绪可以使用");
         ac.close();
     }
-
 
 }
