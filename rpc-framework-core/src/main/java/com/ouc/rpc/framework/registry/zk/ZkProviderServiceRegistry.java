@@ -1,20 +1,13 @@
 package com.ouc.rpc.framework.registry.zk;
 
-import com.ouc.rpc.framework.model.ExposeServiceModel;
 import com.ouc.rpc.framework.constant.RpcConstant;
+import com.ouc.rpc.framework.model.ExposeServiceModel;
 import com.ouc.rpc.framework.model.ZooKeeperAddressModel;
 import com.ouc.rpc.framework.registry.ServiceRegistry;
 import com.ouc.rpc.framework.serialization.Serializer;
 import com.ouc.rpc.framework.util.ApplicationContextUtil;
-import com.ouc.rpc.framework.util.PropertiesFileUtil;
-import com.ouc.rpc.framework.util.RpcCommonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.extension.ExtensionLoader;
-
-
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Properties;
 
 /**
  * @Description: 服务提供者服务注册实现类

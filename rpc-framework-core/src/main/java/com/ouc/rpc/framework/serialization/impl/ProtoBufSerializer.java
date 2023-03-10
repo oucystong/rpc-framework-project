@@ -2,8 +2,6 @@ package com.ouc.rpc.framework.serialization.impl;
 
 import com.ouc.rpc.framework.serialization.Serializer;
 
-import java.io.IOException;
-
 /**
  * @Description: ProtoBuf序列化和反序列化实现
  * @Author: Mr.Tong

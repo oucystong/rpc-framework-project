@@ -2,8 +2,6 @@ package com.ouc.rpc.framework.serialization;
 
 import org.apache.dubbo.common.extension.SPI;
 
-import java.io.IOException;
-
 /**
  * @Description: 序列化和反序列化接口
  * @Author: Mr.Tong

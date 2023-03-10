@@ -4,8 +4,6 @@ import com.ouc.rpc.framework.serialization.Serializer;
 import lombok.extern.slf4j.Slf4j;
 import org.nustaq.serialization.FSTConfiguration;
 
-import java.io.IOException;
-
 /**
  * @Description: Fst序列化和反序列化实现
  * @Author: Mr.Tong

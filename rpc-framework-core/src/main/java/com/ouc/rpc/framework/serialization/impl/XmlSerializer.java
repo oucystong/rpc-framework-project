@@ -6,8 +6,6 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.thoughtworks.xstream.security.AnyTypePermission;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-
 /**
  * @Description: XML序列化和反序列化实现
  * @Author: Mr.Tong

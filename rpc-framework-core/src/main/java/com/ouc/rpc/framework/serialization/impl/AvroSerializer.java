@@ -1,13 +1,8 @@
 package com.ouc.rpc.framework.serialization.impl;
 
 import com.ouc.rpc.framework.serialization.Serializer;
-import org.apache.avro.Schema;
-import org.apache.avro.io.*;
-import org.apache.avro.reflect.ReflectDatumReader;
-import org.apache.avro.reflect.ReflectDatumWriter;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import org.apache.avro.io.DecoderFactory;
+import org.apache.avro.io.EncoderFactory;
 
 /**
  * @Description: Avro序列化和反序列化实现

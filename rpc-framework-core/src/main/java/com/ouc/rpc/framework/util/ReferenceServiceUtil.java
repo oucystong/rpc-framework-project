@@ -19,7 +19,6 @@ package com.ouc.rpc.framework.util;
 
 import com.ouc.rpc.framework.model.ReferenceServiceModel;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

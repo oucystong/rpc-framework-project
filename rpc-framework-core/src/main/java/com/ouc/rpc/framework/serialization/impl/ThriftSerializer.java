@@ -1,12 +1,6 @@
 package com.ouc.rpc.framework.serialization.impl;
 
 import com.ouc.rpc.framework.serialization.Serializer;
-import org.apache.thrift.TDeserializer;
-import org.apache.thrift.TSerializer;
-import org.apache.thrift.protocol.TBinaryProtocol;
-import org.apache.thrift.transport.TTransportException;
-
-import java.io.IOException;
 
 /**
  * @Description: Thrift序列化和反序列化实现

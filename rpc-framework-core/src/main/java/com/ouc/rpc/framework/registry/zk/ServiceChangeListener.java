@@ -1,7 +1,6 @@
 package com.ouc.rpc.framework.registry.zk;
 
 import com.ouc.rpc.framework.model.ReferenceServiceModel;
-import com.ouc.rpc.framework.util.ReferenceServiceUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.api.CuratorEvent;

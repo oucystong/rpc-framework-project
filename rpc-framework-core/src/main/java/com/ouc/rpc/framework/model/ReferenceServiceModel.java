@@ -1,29 +1,19 @@
 package com.ouc.rpc.framework.model;
 
 import com.ouc.rpc.framework.constant.RpcConstant;
-import com.ouc.rpc.framework.registry.zk.ServiceChangeListener;
 import com.ouc.rpc.framework.registry.zk.ZkConsumerServiceRegistry;
-import com.ouc.rpc.framework.registry.zk.ZkProviderServiceRegistry;
 import com.ouc.rpc.framework.registry.zk.ZooKeeperClient;
 import com.ouc.rpc.framework.serialization.Serializer;
 import com.ouc.rpc.framework.util.ApplicationContextUtil;
-import com.ouc.rpc.framework.util.PropertiesFileUtil;
 import com.ouc.rpc.framework.util.ReferenceServiceUtil;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.extension.ExtensionLoader;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * @Description: 客户端在服务发现时需要引用的信息模型

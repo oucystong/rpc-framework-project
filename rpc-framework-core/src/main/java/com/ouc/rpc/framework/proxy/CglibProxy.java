@@ -2,7 +2,6 @@ package com.ouc.rpc.framework.proxy;
 
 
 import net.sf.cglib.proxy.Enhancer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
