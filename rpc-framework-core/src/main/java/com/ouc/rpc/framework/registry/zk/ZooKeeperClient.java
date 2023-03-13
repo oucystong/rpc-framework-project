@@ -41,7 +41,8 @@ public class ZooKeeperClient {
         // 连接重试策略 | 最大重试次数为3 | 每次重试时间呈指数增加
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(BASE_SLEEP_TIME, MAX_RETRIES);
         // 创建ZK客户端
-        zkClient = CuratorFrameworkFactory.builder().connectString(zookeeperAddress).sessionTimeoutMs(1000).retryPolicy(retryPolicy).build();
+//        zkClient = CuratorFrameworkFactory.builder().connectString(zookeeperAddress).sessionTimeoutMs(1000).retryPolicy(retryPolicy).build();
+        zkClient = CuratorFrameworkFactory.builder().connectString(zookeeperAddress).retryPolicy(retryPolicy).build();
         log.info("zk client start connect the zk server");
         zkClient.start();
         log.info("zk successfully connect the zk server");

@@ -6,7 +6,7 @@ import org.apache.dubbo.common.extension.SPI;
  * @Description: 序列化和反序列化接口
  * @Author: Mr.Tong
  */
-@SPI(value = "json")
+@SPI(value = "jdk")
 public interface Serializer {
 
     /**

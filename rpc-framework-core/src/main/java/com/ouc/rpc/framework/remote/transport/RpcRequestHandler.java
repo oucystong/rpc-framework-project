@@ -49,7 +49,7 @@ public class RpcRequestHandler extends SimpleChannelInboundHandler<RpcRequestMes
             }
 
             // 获取服务的实现类
-            Object exposeServiceImpl = ApplicationContextUtil.getApplicationContext().getBean(exposeServiceModel.getExposeServiceImpl());
+            Object exposeServiceImpl = ApplicationContextUtil.getApplicationContext().getBean(Class.forName(exposeServiceModel.getExposeServiceImpl()));
 
             // 找不到实现类
             if (exposeServiceImpl == null) {
@@ -57,10 +57,7 @@ public class RpcRequestHandler extends SimpleChannelInboundHandler<RpcRequestMes
             }
 
             // 通过反射调用方法获取返回值
-            Object result = exposeServiceImpl
-                    .getClass()
-                    .getMethod(msg.getMethodName(), msg.getArgTypes())
-                    .invoke(exposeServiceImpl, msg.getArgs());
+            Object result = exposeServiceImpl.getClass().getMethod(msg.getMethodName(), msg.getArgTypes()).invoke(exposeServiceImpl, msg.getArgs());
 
             // 将结果内容添加到RPC响应消息中
             rpcResponseMessage.setResult(result);

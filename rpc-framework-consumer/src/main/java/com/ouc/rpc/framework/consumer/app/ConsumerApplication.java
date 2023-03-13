@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 /**
- *
  * @Description: 消费者主启动类
  * @Author: Mr.Tong
  */
@@ -28,7 +27,7 @@ public class ConsumerApplication {
 //        log.info(consumerService.testBMethod("param1", "param2"));
         // 等待系统输入
         ProviderService pro = annotationConfigApplicationContext.getBean(ProviderService.class);
-        pro.ServiceAMethod("===");
+        System.out.println(pro.ServiceAMethod("================================"));
         System.in.read();
     }
 }

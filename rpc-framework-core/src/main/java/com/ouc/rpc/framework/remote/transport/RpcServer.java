@@ -46,7 +46,7 @@ public class RpcServer extends Thread {
             serverBootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel ch) throws Exception {
-                    ch.pipeline().addLast(new ProcotolFrameDecoder());
+//                    ch.pipeline().addLast(new ProcotolFrameDecoder());
                     ch.pipeline().addLast(LOGGING_HANDLER);
                     ch.pipeline().addLast(MESSAGE_CODEC);
                     ch.pipeline().addLast(RPC_REQUEST_HANDLER);

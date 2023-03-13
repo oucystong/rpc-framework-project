@@ -30,7 +30,7 @@ public class MessageCodecSharable extends MessageToMessageCodec<ByteBuf, Message
         // 序列化消息
         byte[] serialize = serializer.serialize(msg);
         // 写入Buffer
-        buffer.writeByte(serialize.length);
+        buffer.writeInt(serialize.length);
         buffer.writeBytes(serialize);
 
         out.add(buffer);
