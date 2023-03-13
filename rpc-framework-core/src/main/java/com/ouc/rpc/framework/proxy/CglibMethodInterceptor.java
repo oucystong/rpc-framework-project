@@ -74,7 +74,7 @@ public class CglibMethodInterceptor implements MethodInterceptor {
 
         // 实现NIO线程和主线程的通信 | 通过Promise对象来接收结果 | 接收到结果之后判断Promise对象的状态
         DefaultPromise<Object> promise = new DefaultPromise<>(channel.eventLoop());
-        RpcResponseHandler.PROMISES.put(rpcRequestMessage.getRequestId(), promise);
+        RpcResponseHandler.PROMISES.put(rpcRequestMessage.getSequenceId(), promise);
 
         // 将数据写入信道，传输到服务器端
         channel.writeAndFlush(rpcRequestMessage);

@@ -23,7 +23,16 @@ public class RpcResponseHandler extends SimpleChannelInboundHandler<RpcResponseM
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RpcResponseMessage msg) throws Exception {
-
-
+        log.info("get rpc response: {}", msg);
+        // 拿到Promise对象 | 将结果进行存储 | 促使主线程取消阻塞状态获得结果
+        Promise<Object> promise = PROMISES.remove(msg.getSequenceId());
+        if (promise != null) {
+            Boolean success = msg.getIsSuccess();
+            if (success) {
+                promise.setSuccess(msg.getResult());
+            } else {
+                promise.setFailure((Throwable) msg.getError());
+            }
+        }
     }
 }
