@@ -4,20 +4,25 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean class="com.ouc.rpc.framework.spring.model.Student" scope="prototype">
-        <property name="userName" value="test"></property>
-        <property name="cardNumber" value="12356"></property>
-     </bean>
+    <!--    <bean class="com.ouc.rpc.framework.spring.model.Student" scope="prototype">-->
+    <!--        <property name="userName" value="test"></property>-->
+    <!--        <property name="cardNumber" value="12356"></property>-->
+    <!--     </bean>-->
     <!-- 使用init-method属性指定初始化方法 -->
     <!-- 使用destroy-method属性指定销毁方法 -->
-    <bean class="com.ouc.rpc.framework.spring.model.User" scope="prototype" init-method="initMethod"
-          destroy-method="destroyMethod">
-        <property name="username" value="admin"></property>
-        <property name="password" value="123456"></property>
-    </bean>
+    <!--    <bean class="com.ouc.rpc.framework.spring.model.User" scope="prototype" init-method="initMethod"-->
+    <!--          destroy-method="destroyMethod">-->
+    <!--        <property name="username" value="admin"></property>-->
+    <!--        <property name="password" value="123456"></property>-->
+    <!--    </bean>-->
 
     <!-- bean的后置处理器要放入IOC容器才能生效 -->
-    <bean id="myBeanProcessor" class="com.ouc.rpc.framework.spring.BeanProcessor"/>
+    <!--    <bean id="myBeanProcessor" class="com.ouc.rpc.framework.spring.BeanProcessor"/>-->
+
+    <!--    测试FactoryBean-->
+    <bean id="qwe" class="com.ouc.rpc.framework.spring.model.Person">
+        <property name="personName" value="tong"></property>
+    </bean>
 
 
 </beans>

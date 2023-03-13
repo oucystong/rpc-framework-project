@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
  * @Author: Mr.Tong
  */
 @Slf4j
-public class ZooKeeperClientTest {
+public class ZooKeeperRpcClientTest {
 
 
     @Test

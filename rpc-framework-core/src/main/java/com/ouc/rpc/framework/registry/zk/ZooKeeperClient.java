@@ -186,15 +186,15 @@ public class ZooKeeperClient {
             switch (event.getType()) {
                 case CHILD_ADDED:
                     ReferenceServiceUtil.get(referenceServiceName).getReferences();
-                    log.info("service instance changed: ==> instance add ==> {}", pathChildrenCache.getCurrentData());
+                    log.info("service instance changed: ==> instance add ==> {}", ReferenceServiceUtil.get(referenceServiceName));
                     break;
                 case CHILD_REMOVED:
                     ReferenceServiceUtil.get(referenceServiceName).getReferences();
-                    log.info("service instance changed: ==> instance remove ==> {}", pathChildrenCache.getCurrentData());
+                    log.info("service instance changed: ==> instance remove ==> {}", ReferenceServiceUtil.get(referenceServiceName));
                     break;
                 case CHILD_UPDATED:
                     ReferenceServiceUtil.get(referenceServiceName).getReferences();
-                    log.info("service instance changed: ==> instance update ==> {}", pathChildrenCache.getCurrentData());
+                    log.info("service instance changed: ==> instance update ==> {}", ReferenceServiceUtil.get(referenceServiceName));
                     break;
                 default:
                     break;

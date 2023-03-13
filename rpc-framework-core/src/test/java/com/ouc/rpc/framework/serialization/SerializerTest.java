@@ -1,6 +1,6 @@
 package com.ouc.rpc.framework.serialization;
 
-import com.ouc.rpc.framework.remote.RpcRequest;
+import com.ouc.rpc.framework.remote.RpcRequestMessage;
 import com.ouc.rpc.framework.serialization.impl.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -14,25 +14,25 @@ import java.util.Arrays;
 @Slf4j
 public class SerializerTest {
 
-    private static RpcRequest rpcRequest = new RpcRequest();
+    private static RpcRequestMessage rpcRequestMessage = new RpcRequestMessage();
 
     static {
-        rpcRequest.setRequestId("id_1");
-        rpcRequest.setMethodName("method");
-        rpcRequest.setInterfaceName("interface");
-        rpcRequest.setTypes(new Class[]{String.class, String.class});
-        rpcRequest.setArgs(new Object[]{"Obj1", "Obj2"});
+        rpcRequestMessage.setRequestId("id_1");
+        rpcRequestMessage.setMethodName("method");
+        rpcRequestMessage.setInterfaceName("interface");
+        rpcRequestMessage.setTypes(new Class[]{String.class, String.class});
+        rpcRequestMessage.setArgs(new Object[]{"Obj1", "Obj2"});
     }
 
     @Test
     void testJdkSerializer() {
         JdkSerializer jdkSerializer = new JdkSerializer();
         // 序列化测试
-        byte[] serialize = jdkSerializer.serialize(rpcRequest);
+        byte[] serialize = jdkSerializer.serialize(rpcRequestMessage);
         log.info("jdk serialize result: {}", Arrays.toString(serialize));
         log.info("jdk serialize result length: {}", serialize.length);
         // 反序列化测试
-        RpcRequest deserialize = jdkSerializer.deserialize(serialize, RpcRequest.class);
+        RpcRequestMessage deserialize = jdkSerializer.deserialize(serialize, RpcRequestMessage.class);
         log.info("jdk deserialize result:{}", deserialize);
     }
 
@@ -41,11 +41,11 @@ public class SerializerTest {
     void testJsonSerializer() {
         JsonSerializer jsonSerializer = new JsonSerializer();
         // 序列化测试
-        byte[] serialize = jsonSerializer.serialize(rpcRequest);
+        byte[] serialize = jsonSerializer.serialize(rpcRequestMessage);
         log.info("json serialize result: {}", Arrays.toString(serialize));
         log.info("json serialize result length: {}", serialize.length);
         // 反序列化测试
-        RpcRequest deserialize = jsonSerializer.deserialize(serialize, RpcRequest.class);
+        RpcRequestMessage deserialize = jsonSerializer.deserialize(serialize, RpcRequestMessage.class);
         log.info("json deserialize result:{}", deserialize);
     }
 
@@ -53,11 +53,11 @@ public class SerializerTest {
     void testXmlSerializer() {
         XmlSerializer xmlSerializer = new XmlSerializer();
         // 序列化测试
-        byte[] serialize = xmlSerializer.serialize(rpcRequest);
+        byte[] serialize = xmlSerializer.serialize(rpcRequestMessage);
         log.info("xml serialize result: {}", Arrays.toString(serialize));
         log.info("xml serialize result length: {}", serialize.length);
         // 反序列化测试
-        RpcRequest deserialize = xmlSerializer.deserialize(serialize, RpcRequest.class);
+        RpcRequestMessage deserialize = xmlSerializer.deserialize(serialize, RpcRequestMessage.class);
         log.info("xml deserialize result:{}", deserialize);
     }
 
@@ -65,11 +65,11 @@ public class SerializerTest {
     void testFstSerializer() {
         FstSerializer fstSerializer = new FstSerializer();
         // 序列化测试
-        byte[] serialize = fstSerializer.serialize(rpcRequest);
+        byte[] serialize = fstSerializer.serialize(rpcRequestMessage);
         log.info("fst serialize result: {}", Arrays.toString(serialize));
         log.info("fst serialize result length: {}", serialize.length);
         // 反序列化测试
-        RpcRequest deserialize = fstSerializer.deserialize(serialize, RpcRequest.class);
+        RpcRequestMessage deserialize = fstSerializer.deserialize(serialize, RpcRequestMessage.class);
         log.info("fst deserialize result:{}", deserialize);
     }
 
@@ -78,11 +78,11 @@ public class SerializerTest {
     void testHessianSerializer() {
         HessianSerializer hessianSerializer = new HessianSerializer();
         // 序列化测试
-        byte[] serialize = hessianSerializer.serialize(rpcRequest);
+        byte[] serialize = hessianSerializer.serialize(rpcRequestMessage);
         log.info("hessian serialize result: {}", Arrays.toString(serialize));
         log.info("hessian serialize result length: {}", serialize.length);
         // 反序列化测试
-        RpcRequest deserialize = hessianSerializer.deserialize(serialize, RpcRequest.class);
+        RpcRequestMessage deserialize = hessianSerializer.deserialize(serialize, RpcRequestMessage.class);
         log.info("hessian deserialize result:{}", deserialize);
     }
 
@@ -91,11 +91,11 @@ public class SerializerTest {
     void testKryoSerializer() {
         KryoSerializer kryoSerializer = new KryoSerializer();
         // 序列化测试
-        byte[] serialize = kryoSerializer.serialize(rpcRequest);
+        byte[] serialize = kryoSerializer.serialize(rpcRequestMessage);
         log.info("kryo serialize result: {}", Arrays.toString(serialize));
         log.info("kryo serialize result length: {}", serialize.length);
         // 反序列化测试
-        RpcRequest deserialize = kryoSerializer.deserialize(serialize, RpcRequest.class);
+        RpcRequestMessage deserialize = kryoSerializer.deserialize(serialize, RpcRequestMessage.class);
         log.info("kryo deserialize result:{}", deserialize);
     }
 
@@ -104,11 +104,11 @@ public class SerializerTest {
     void testMultipleSerializer() {
         MultipleSerializer multipleSerializer = new MultipleSerializer();
         // 序列化测试
-        byte[] serialize = multipleSerializer.serialize(rpcRequest);
+        byte[] serialize = multipleSerializer.serialize(rpcRequestMessage);
         log.info("multiple serialize result: {}", Arrays.toString(serialize));
         log.info("multiple serialize result length: {}", serialize.length);
         // 反序列化测试
-        RpcRequest deserialize = multipleSerializer.deserialize(serialize, RpcRequest.class);
+        RpcRequestMessage deserialize = multipleSerializer.deserialize(serialize, RpcRequestMessage.class);
         log.info("multiple deserialize result:{}", deserialize);
     }
 
@@ -117,11 +117,11 @@ public class SerializerTest {
     void testProtoStuffSerializer() {
         ProtoStuffSerializer protoStuffSerializer = new ProtoStuffSerializer();
         // 序列化测试
-        byte[] serialize = protoStuffSerializer.serialize(rpcRequest);
+        byte[] serialize = protoStuffSerializer.serialize(rpcRequestMessage);
         log.info("protostuff serialize result: {}", Arrays.toString(serialize));
         log.info("protostuff serialize result length: {}", serialize.length);
         // 反序列化测试
-        RpcRequest deserialize = protoStuffSerializer.deserialize(serialize, RpcRequest.class);
+        RpcRequestMessage deserialize = protoStuffSerializer.deserialize(serialize, RpcRequestMessage.class);
         log.info("protostuff deserialize result:{}", deserialize);
     }
 

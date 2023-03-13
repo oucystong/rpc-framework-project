@@ -1,6 +1,7 @@
 package com.ouc.rpc.framework.model;
 
 import com.ouc.rpc.framework.constant.RpcConstant;
+import com.ouc.rpc.framework.proxy.ProxyFactory;
 import com.ouc.rpc.framework.registry.zk.ZkConsumerServiceRegistry;
 import com.ouc.rpc.framework.registry.zk.ZooKeeperClient;
 import com.ouc.rpc.framework.serialization.Serializer;
@@ -9,6 +10,7 @@ import com.ouc.rpc.framework.util.ReferenceServiceUtil;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.common.extension.ExtensionLoader;
+import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.InitializingBean;
 
 import java.io.Serializable;
@@ -25,7 +27,7 @@ import java.util.List;
 @ToString
 @Getter
 @Setter
-public class ReferenceServiceModel implements Serializable, InitializingBean {
+public class ReferenceServiceModel implements Serializable, FactoryBean<Object>, InitializingBean {
 
     /**
      * @Description: 消费者引用服务的ID
@@ -133,4 +135,21 @@ public class ReferenceServiceModel implements Serializable, InitializingBean {
         zkClient.subscribeChildChange(childPath, this.referenceServiceName);
     }
 
+    // 生成代理对象
+    @Override
+    public Object getObject() throws Exception {
+        Class<?> clazz = getObjectType();
+        // 生成接口的代理对象
+        return ProxyFactory.PROXY_SERVICE.getProxy(clazz, this);
+    }
+
+    @Override
+    public Class<?> getObjectType() {
+        try {
+            return Class.forName(referenceServiceName);
+        } catch (ClassNotFoundException e) {
+            log.error("the reference service name has not been specified", e.getMessage());
+        }
+        return null;
+    }
 }

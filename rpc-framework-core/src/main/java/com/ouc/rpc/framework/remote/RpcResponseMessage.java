@@ -12,8 +12,8 @@ import java.io.Serializable;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-public class RpcResponse implements Serializable {
+@ToString(callSuper = true)
+public class RpcResponseMessage extends Message implements Serializable {
     /**
      * @Description: RPC请求ID
      */

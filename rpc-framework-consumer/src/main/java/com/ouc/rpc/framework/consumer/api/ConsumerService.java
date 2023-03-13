@@ -17,9 +17,10 @@ public class ConsumerService {
      */
     public String testAMethod(String param1) {
         // 调用远程方法 | 使用了RPC框架屏蔽了底层 | 所以像本地调用
-        ProviderService providerService = ProxyFactory.getProxy(ProviderService.class);
-        String result = providerService.ServiceAMethod(param1);
-        return result;
+//        ProviderService providerService = ProxyFactory.getProxy(ProviderService.class);
+//        String result = providerService.ServiceAMethod(param1);
+//        return result;
+        return null;
     }
 
 
@@ -28,9 +29,10 @@ public class ConsumerService {
      */
     public String testBMethod(String param1, String param2) {
         // 调用远程方法 | 使用了RPC框架屏蔽了底层 | 所以像本地调用
-        ProviderService providerService = ProxyFactory.getProxy(ProviderService.class);
-        String result = providerService.ServiceBMethod(param1, param2);
-        return result;
+//        ProviderService providerService = ProxyFactory.getProxy(ProviderService.class);
+//        String result = providerService.ServiceBMethod(param1, param2);
+//        return result;
+        return null;
     }
 
 

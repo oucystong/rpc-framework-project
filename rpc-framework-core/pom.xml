@@ -144,6 +144,14 @@
             <version>3.2.5</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-core -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
+            <version>5.8.11</version>
+        </dependency>
+
+
 
     </dependencies>
 </project>

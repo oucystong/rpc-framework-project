@@ -1,5 +1,6 @@
 package com.ouc.rpc.framework.spring;
 
+import com.ouc.rpc.framework.spring.model.Person;
 import com.ouc.rpc.framework.spring.model.Student;
 import com.ouc.rpc.framework.spring.model.User;
 import lombok.extern.slf4j.Slf4j;
@@ -7,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
 
 /**
  * @Description:
@@ -40,4 +43,28 @@ public class SpringTest {
         ac.close();
     }
 
+
+    @Test
+    void testFactoryBean() {
+        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("classpath:beans.xml");
+
+        log.info("===========================================");
+
+        log.info("context has student : {}", classPathXmlApplicationContext.containsBean("student"));
+        log.info("context has person : {}", classPathXmlApplicationContext.containsBean("person"));
+
+        Student student = classPathXmlApplicationContext.getBean(Student.class);
+
+        Person person = classPathXmlApplicationContext.getBean(Person.class);
+        String[] beanNamesForType1 = classPathXmlApplicationContext.getBeanNamesForType(Student.class);
+        log.info(Arrays.toString(beanNamesForType1));
+
+        String[] beanNamesForType = classPathXmlApplicationContext.getBeanNamesForType(Person.class);
+        log.info(Arrays.toString(beanNamesForType));
+        log.info(student.getCardNumber());
+
+        log.info(student.getUserName());
+        log.info(person.getPersonName());
+
+    }
 }

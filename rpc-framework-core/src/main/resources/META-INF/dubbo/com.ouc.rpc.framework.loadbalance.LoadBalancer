@@ -1,0 +1,4 @@
+random=com.ouc.rpc.framework.loadbalance.RandomLoadBalancer
+roundrobin=com.ouc.rpc.framework.loadbalance.RoundRobinLoadBalancer
+
+

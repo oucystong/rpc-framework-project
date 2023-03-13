@@ -12,8 +12,8 @@ import java.io.Serializable;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class RpcRequest implements Serializable {
+@ToString(callSuper = true)
+public class RpcRequestMessage extends Message implements Serializable {
 
     /**
      * @Description: RPC请求ID
@@ -33,7 +33,7 @@ public class RpcRequest implements Serializable {
     /**
      * @Description: 请求的参数类型
      */
-    private Class[] types;
+    private Class[] argTypes;
 
     /**
      * @Description: 请求的参数值
