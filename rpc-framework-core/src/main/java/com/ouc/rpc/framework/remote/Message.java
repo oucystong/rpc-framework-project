@@ -23,9 +23,9 @@ public abstract class Message implements Serializable {
     private static final Map<Integer, Class<? extends Message>> messageClasses = new HashMap<>();
 
     // 消息ID
-    private int sequenceId;
+    private String sequenceId;
     // 消息类型
-    private int messageType;
+    private Integer messageType;
 
     public static final int RPC_REQUEST_MESSAGE_TYPE = 1;
 

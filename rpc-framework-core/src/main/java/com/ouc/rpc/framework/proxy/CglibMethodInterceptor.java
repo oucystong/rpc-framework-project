@@ -53,12 +53,11 @@ public class CglibMethodInterceptor implements MethodInterceptor {
         // 构造请求参数
         RpcRequestMessage rpcRequestMessage = new RpcRequestMessage();
 
-        rpcRequestMessage.setRequestId(IdUtil.simpleUUID());
+        rpcRequestMessage.setSequenceId(IdUtil.simpleUUID());
         rpcRequestMessage.setInterfaceName(referenceServiceModel.getReferenceServiceName());
         rpcRequestMessage.setMethodName(methodName);
         rpcRequestMessage.setArgTypes(argTypes);
         rpcRequestMessage.setArgs(args);
-
 
         // 获取可用的服务实例列表
         List<ExposeServiceModel> services = referenceServiceModel.getServices();

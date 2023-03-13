@@ -15,10 +15,6 @@ import java.io.Serializable;
 @ToString(callSuper = true)
 public class RpcResponseMessage extends Message implements Serializable {
     /**
-     * @Description: RPC请求ID
-     */
-    private String requestId;
-    /**
      * @Description: RPC请求失败/成功标记
      */
     private Boolean isSuccess;
@@ -26,4 +22,9 @@ public class RpcResponseMessage extends Message implements Serializable {
      * @Description: RPC响应结果
      */
     private Object result;
+
+    /**
+     * @Description: RPC响应结果
+     */
+    private Object error;
 }

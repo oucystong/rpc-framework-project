@@ -15,10 +15,6 @@ import java.io.Serializable;
 @ToString(callSuper = true)
 public class RpcRequestMessage extends Message implements Serializable {
 
-    /**
-     * @Description: RPC请求ID
-     */
-    private String requestId;
 
     /**
      * @Description: 请求的接口名称
