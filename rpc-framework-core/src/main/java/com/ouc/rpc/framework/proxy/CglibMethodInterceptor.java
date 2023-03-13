@@ -7,7 +7,6 @@ import com.ouc.rpc.framework.model.ReferenceServiceModel;
 import com.ouc.rpc.framework.remote.RpcRequestMessage;
 import com.ouc.rpc.framework.remote.transport.RpcClient;
 import com.ouc.rpc.framework.remote.transport.RpcResponseHandler;
-import com.ouc.rpc.framework.serialization.Serializer;
 import io.netty.channel.Channel;
 import io.netty.util.concurrent.DefaultPromise;
 import lombok.extern.slf4j.Slf4j;

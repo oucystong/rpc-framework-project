@@ -4,7 +4,6 @@ package com.ouc.rpc.framework.proxy;
 import com.ouc.rpc.framework.model.ReferenceServiceModel;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.cglib.proxy.Enhancer;
-import org.springframework.stereotype.Service;
 
 /**
  * @Description: Cglib动态代理实现

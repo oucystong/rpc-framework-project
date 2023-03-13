@@ -7,10 +7,8 @@ import com.ouc.rpc.framework.util.ApplicationContextUtil;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
-import javafx.application.Application;
 import lombok.extern.slf4j.Slf4j;
 
-import java.lang.reflect.Method;
 import java.util.Map;
 
 /**
