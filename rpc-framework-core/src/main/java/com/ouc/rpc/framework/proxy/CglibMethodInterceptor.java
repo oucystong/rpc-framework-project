@@ -6,8 +6,10 @@ import com.ouc.rpc.framework.model.ExposeServiceModel;
 import com.ouc.rpc.framework.model.ReferenceServiceModel;
 import com.ouc.rpc.framework.remote.RpcRequestMessage;
 import com.ouc.rpc.framework.remote.transport.RpcClient;
+import com.ouc.rpc.framework.remote.transport.RpcResponseHandler;
 import com.ouc.rpc.framework.serialization.Serializer;
 import io.netty.channel.Channel;
+import io.netty.util.concurrent.DefaultPromise;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
@@ -52,10 +54,11 @@ public class CglibMethodInterceptor implements MethodInterceptor {
         RpcRequestMessage rpcRequestMessage = new RpcRequestMessage();
 
         rpcRequestMessage.setRequestId(IdUtil.simpleUUID());
+        rpcRequestMessage.setInterfaceName(referenceServiceModel.getReferenceServiceName());
         rpcRequestMessage.setMethodName(methodName);
         rpcRequestMessage.setArgTypes(argTypes);
         rpcRequestMessage.setArgs(args);
-        rpcRequestMessage.setInterfaceName(referenceServiceModel.getReferenceServiceName());
+
 
         // 获取可用的服务实例列表
         List<ExposeServiceModel> services = referenceServiceModel.getServices();
@@ -70,12 +73,29 @@ public class CglibMethodInterceptor implements MethodInterceptor {
         // 获取客户端的channel，将请求参数写入
         Channel channel = RpcClient.getChannel(serviceInstance.getProviderInstanceIp(), serviceInstance.getProviderInstancePort());
 
+        // 实现NIO线程和主线程的通信 | 通过Promise对象来接收结果 | 接收到结果之后判断Promise对象的状态
+        DefaultPromise<Object> promise = new DefaultPromise<>(channel.eventLoop());
+        RpcResponseHandler.PROMISES.put(rpcRequestMessage.getRequestId(), promise);
+
         // 将数据写入信道，传输到服务器端
         channel.writeAndFlush(rpcRequestMessage);
 
+        // 同步等待Promise对象的结果
+        try {
+            // 等待
+            promise.await();
+        } catch (InterruptedException e) {
+            log.error("wait has exception: {}", e.getMessage());
+        }
 
+        // 判断结果
+        if (promise.isSuccess()) {
+            // 调用正常
+            return promise.getNow();
+        } else {
+            // 调用失败
+            log.error("invoke has exception: {}", promise.cause());
+        }
         return null;
     }
-
-
 }
