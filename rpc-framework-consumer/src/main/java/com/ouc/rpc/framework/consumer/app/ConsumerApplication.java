@@ -2,12 +2,10 @@ package com.ouc.rpc.framework.consumer.app;
 
 
 import com.ouc.rpc.framework.api.ProviderService;
-import com.ouc.rpc.framework.consumer.api.ConsumerService;
 import com.ouc.rpc.framework.consumer.config.ConsumerSpringConfig;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.stereotype.Component;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 
@@ -18,16 +16,30 @@ import java.io.IOException;
 @Slf4j
 public class ConsumerApplication {
     public static void main(String[] args) throws IOException {
+//        Dubbo();
+        sRPC();
+    }
+
+
+    public static void sRPC() throws IOException {
         // 获取项目容器
         AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(ConsumerSpringConfig.class);
         // 获取Bean
-//        ConsumerService consumerService = annotationConfigApplicationContext.getBean(ConsumerService.class);
+        ProviderService providerService = annotationConfigApplicationContext.getBean(ProviderService.class);
         // 使用Bean中的方法
-//        log.info(consumerService.testAMethod("param1"));
-//        log.info(consumerService.testBMethod("param1", "param2"));
+        log.info(providerService.ServiceAMethod("srpc param1"));
+        log.info(providerService.ServiceBMethod("srpc param1", "srpc param2"));
         // 等待系统输入
-        ProviderService pro = annotationConfigApplicationContext.getBean(ProviderService.class);
-        System.out.println(pro.ServiceAMethod("================================"));
         System.in.read();
+    }
+
+    public static void Dubbo() throws IOException {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring-dubbo-consumer.xml");
+        context.start();
+        ProviderService providerService = context.getBean(ProviderService.class);
+        log.info(providerService.ServiceAMethod("dubbo param1"));
+        log.info(providerService.ServiceBMethod("dubbo param1", "dubbo param2"));
+        System.in.read();
+
     }
 }

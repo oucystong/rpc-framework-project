@@ -18,5 +18,34 @@
 
     <dependencies>
 
+        <!--        https://github.com/openjdk/jmh-->
+        <!--        性能测试框架-->
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-core</artifactId>
+            <version>1.35</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjdk.jmh</groupId>
+            <artifactId>jmh-generator-annprocess</artifactId>
+            <version>1.35</version>
+        </dependency>
+
+        <!--        RPC框架-->
+        <dependency>
+            <groupId>com.ouc.rpc.framework</groupId>
+            <artifactId>rpc-framework-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
     </dependencies>
+
+
 </project>
