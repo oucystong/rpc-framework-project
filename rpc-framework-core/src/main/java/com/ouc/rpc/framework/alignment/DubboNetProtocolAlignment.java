@@ -122,7 +122,7 @@ public class DubboNetProtocolAlignment implements NetProtocolAlignment {
     @Override
     public Integer getTargetIdOfSerializationType(String serializationType) {
         if (serializationType.equals("hessian2")) {
-            return 9;
+            return 8;
         }
         return -1;
     }
