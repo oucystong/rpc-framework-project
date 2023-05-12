@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:srpc="https://www.srpc.com/schema/srpc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       https://www.srpc.com/schema/srpc
+       https://www.srpc.com/schema/srpc/srpc-schema.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--    组件扫描-->
+    <context:component-scan base-package="com.ouc.rpc.framework.consumer"></context:component-scan>
+    <!--    应用名称-->
+    <srpc:application name="service_consumer"></srpc:application>
+    <!--  服务注册地址  -->
+    <srpc:zk address="127.0.0.1:2181"></srpc:zk>
+    <!--    引用服务-->
+    <srpc:reference id="greetingService" name="com.ouc.rpc.framework.api.service.GreetingService"
+                    rpc-framework="dubbo"></srpc:reference>
+
+    <srpc:reference id="secondService" name="com.ouc.rpc.framework.api.service.SecondService"></srpc:reference>
+    <!--    动态代理方式-->
+    <srpc:proxy id="proxy" type="jdk"></srpc:proxy>
+    <!--    客户端负载均衡方式-->
+    <srpc:client id="client" load-balance="roundrobin"></srpc:client>
+
+</beans>

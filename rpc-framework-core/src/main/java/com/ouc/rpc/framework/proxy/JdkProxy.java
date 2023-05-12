@@ -13,7 +13,6 @@ import java.lang.reflect.Proxy;
 @Slf4j
 public class JdkProxy implements ProxyService {
 
-
     @Override
     public <T> T getProxy(Class<T> interfaceClass, ReferenceServiceModel referenceServiceModel) {
         // 使用Jdk动态代理创建代理对象

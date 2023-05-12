@@ -1,11 +1,9 @@
 json=com.ouc.rpc.framework.serialization.impl.JsonSerializer
 xml=com.ouc.rpc.framework.serialization.impl.XmlSerializer
 jdk=com.ouc.rpc.framework.serialization.impl.JdkSerializer
-protobuf=com.ouc.rpc.framework.serialization.impl.ProtoBufSerializer
-thrift=com.ouc.rpc.framework.serialization.impl.ThriftSerializer
 kryo=com.ouc.rpc.framework.serialization.impl.KryoSerializer
 hessian=com.ouc.rpc.framework.serialization.impl.HessianSerializer
-avro=com.ouc.rpc.framework.serialization.impl.AvroSerializer
 fst=com.ouc.rpc.framework.serialization.impl.FstSerializer
 protostuff=com.ouc.rpc.framework.serialization.impl.ProtoStuffSerializer
 multiple=com.ouc.rpc.framework.serialization.impl.MultipleSerializer
+hessian2=com.ouc.rpc.framework.serialization.impl.Hessian2Serializer

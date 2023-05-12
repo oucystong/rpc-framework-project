@@ -12,6 +12,7 @@
         <module>rpc-framework-provider</module>
         <module>rpc-framework-benchmark</module>
         <module>rpc-framework-api</module>
+        <module>rpc-framework-provider-dubbo</module>
     </modules>
 
 

@@ -7,7 +7,7 @@ import org.apache.dubbo.common.extension.SPI;
  * @Description: 用于生成代理对象的代理服务
  * @Author: Mr.Tong
  */
-@SPI("cglib")
+@SPI("javassist")
 public interface ProxyService {
     <T> T getProxy(Class<T> interfaceClass, ReferenceServiceModel referenceServiceModel);
 }

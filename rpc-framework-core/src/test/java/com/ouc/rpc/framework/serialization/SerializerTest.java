@@ -17,7 +17,7 @@ public class SerializerTest {
     private static RpcRequestMessage rpcRequestMessage = new RpcRequestMessage();
 
     static {
-        rpcRequestMessage.setSequenceId("id_1");
+        rpcRequestMessage.setSequenceId(123456L);
         rpcRequestMessage.setMethodName("method");
         rpcRequestMessage.setInterfaceName("interface");
         rpcRequestMessage.setArgTypes(new Class[]{String.class, String.class});

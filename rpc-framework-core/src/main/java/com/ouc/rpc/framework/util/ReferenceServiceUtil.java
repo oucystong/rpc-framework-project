@@ -38,21 +38,7 @@ public final class ReferenceServiceUtil {
     }
 
     public static ReferenceServiceModel get(String referenceServiceName) throws Exception {
-        // 从容器中获取引用的服务
-        ReferenceServiceModel referenceServiceModel = referenceServiceModelMap.get(referenceServiceName);
-        // 服务判断
-//        if (referenceServiceModel == null) {
-//            synchronized (referenceServiceModelMap) {
-//                referenceServiceModel = referenceServiceModelMap.get(referenceServiceName);
-//                if (referenceServiceModel == null) {
-//                    referenceServiceModel = new ReferenceServiceModel();
-//                    referenceServiceModel.setReferenceServiceName(referenceServiceName);
-//                    referenceServiceModel.init();
-//                    referenceServiceModelMap.put(referenceServiceName, referenceServiceModel);
-//                }
-//            }
-//        }
-        return referenceServiceModel;
+        return referenceServiceModelMap.get(referenceServiceName);
     }
 
 }

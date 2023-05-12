@@ -1,5 +1,9 @@
 package com.ouc.rpc.framework.remote.transport;
 
+
+import com.ouc.rpc.framework.remote.transport.codec.Decode;
+import com.ouc.rpc.framework.remote.transport.codec.Encode;
+
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -9,6 +13,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
+
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -49,7 +54,7 @@ public class RpcClient {
     private static void initChannel(String serverIp, String serverPort) {
         NioEventLoopGroup group = new NioEventLoopGroup();
         LoggingHandler LOGGING_HANDLER = new LoggingHandler(LogLevel.DEBUG);
-        MessageCodecSharable MESSAGE_CODEC = new MessageCodecSharable();
+//        MessageCodecSharable MESSAGE_CODEC = new MessageCodecSharable();
         RpcResponseHandler RPC_RESPONSE_HANDLER = new RpcResponseHandler();
 
         Bootstrap bootstrap = new Bootstrap();
@@ -58,9 +63,11 @@ public class RpcClient {
         bootstrap.handler(new ChannelInitializer<SocketChannel>() {
             @Override
             protected void initChannel(SocketChannel ch) throws Exception {
-//                ch.pipeline().addLast(new ProcotolFrameDecoder());
-                ch.pipeline().addLast(LOGGING_HANDLER);
-                ch.pipeline().addLast(MESSAGE_CODEC);
+                ch.pipeline().addLast(new ProcotolFrameDecoder());
+//                ch.pipeline().addLast(LOGGING_HANDLER);
+                ch.pipeline().addLast(new Encode());
+                ch.pipeline().addLast(new Decode());
+//                ch.pipeline().addLast(MESSAGE_CODEC);
                 ch.pipeline().addLast(RPC_RESPONSE_HANDLER);
             }
         });

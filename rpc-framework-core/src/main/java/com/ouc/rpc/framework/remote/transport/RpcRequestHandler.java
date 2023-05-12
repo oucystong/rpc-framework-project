@@ -23,6 +23,9 @@ public class RpcRequestHandler extends SimpleChannelInboundHandler<RpcRequestMes
     protected void channelRead0(ChannelHandlerContext ctx, RpcRequestMessage msg) throws Exception {
         // 构造RPC响应消息
         RpcResponseMessage rpcResponseMessage = new RpcResponseMessage();
+
+        rpcResponseMessage.setNetProtocol(msg.getNetProtocol());
+        rpcResponseMessage.setSerializationType(msg.getSerializationType());
         rpcResponseMessage.setSequenceId(msg.getSequenceId());
 
         try {
@@ -65,6 +68,7 @@ public class RpcRequestHandler extends SimpleChannelInboundHandler<RpcRequestMes
             rpcResponseMessage.setIsSuccess(false);
             rpcResponseMessage.setError(e);
         }
+
         // 将结果写入到Channel
         ctx.writeAndFlush(rpcResponseMessage);
 

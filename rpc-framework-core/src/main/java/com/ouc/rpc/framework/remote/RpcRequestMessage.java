@@ -29,7 +29,7 @@ public class RpcRequestMessage extends Message implements Serializable {
     /**
      * @Description: 请求的参数类型
      */
-    private Class[] argTypes;
+    private Class<?>[] argTypes;
 
     /**
      * @Description: 请求的参数值
@@ -37,4 +37,8 @@ public class RpcRequestMessage extends Message implements Serializable {
     private Object[] args;
 
 
+    @Override
+    public int getMessageType() {
+        return RPC_REQUEST_MESSAGE_TYPE;
+    }
 }

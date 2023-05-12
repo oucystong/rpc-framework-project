@@ -27,4 +27,9 @@ public class RpcResponseMessage extends Message implements Serializable {
      * @Description: RPC响应结果
      */
     private Object error;
+
+    @Override
+    public int getMessageType() {
+        return RPC_RESPONSE_MESSAGE_TYPE;
+    }
 }

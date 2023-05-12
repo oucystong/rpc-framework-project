@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="https://www.srpc.com/schema/srpc"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="https://www.srpc.com/schema/srpc"
+            elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+    <!-- 应用 -->
+    <xsd:element name="application">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:string" fixed="application"/>
+            <xsd:attribute name="name" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- 服务端 -->
+    <xsd:element name="server">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:string" fixed="server"/>
+            <xsd:attribute name="port" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- 客户端 -->
+    <xsd:element name="client">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:string" fixed="client"/>
+            <xsd:attribute name="load-balance" type="xsd:string" use="optional"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- 注册中心 -->
+    <xsd:element name="zk">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:string" fixed="zk"/>
+            <xsd:attribute name="address" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- 动态代理方式 -->
+    <xsd:element name="proxy">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:string" fixed="proxy"/>
+            <xsd:attribute name="type" type="xsd:string" use="optional"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- 序列化方式 -->
+<!--    <xsd:element name="serializer">-->
+<!--        <xsd:complexType>-->
+<!--            <xsd:attribute name="id" type="xsd:string" fixed="serializer"/>-->
+<!--            <xsd:attribute name="type" type="xsd:string" use="optional"/>-->
+<!--        </xsd:complexType>-->
+<!--    </xsd:element>-->
+
+    <!-- 服务 -->
+    <xsd:element name="service">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:string" use="required"/>
+            <xsd:attribute name="name" type="xsd:string" use="required"/>
+            <xsd:attribute name="impl" type="xsd:string" use="required"/>
+            <xsd:attribute name="serialization" type="xsd:string" default="jdk"/>
+            <xsd:attribute name="net-protocol" type="xsd:string" default="srpc"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- 引用 -->
+    <xsd:element name="reference">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:string" use="required"/>
+            <xsd:attribute name="name" type="xsd:string" use="required"/>
+            <xsd:attribute name="rpc-framework" type="xsd:string" default="srpc"/>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

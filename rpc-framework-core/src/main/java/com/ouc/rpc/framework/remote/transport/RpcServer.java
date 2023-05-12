@@ -1,5 +1,8 @@
 package com.ouc.rpc.framework.remote.transport;
 
+import com.ouc.rpc.framework.remote.transport.codec.Decode;
+import com.ouc.rpc.framework.remote.transport.codec.Encode;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelInitializer;
@@ -33,7 +36,7 @@ public class RpcServer extends Thread {
         // 日志处理器
         LoggingHandler LOGGING_HANDLER = new LoggingHandler(LogLevel.DEBUG);
         // 协议编解码
-        MessageCodecSharable MESSAGE_CODEC = new MessageCodecSharable();
+//        MessageCodecSharable MESSAGE_CODEC = new MessageCodecSharable();
         // 请求消息处理器
         RpcRequestHandler RPC_REQUEST_HANDLER = new RpcRequestHandler();
 
@@ -44,9 +47,11 @@ public class RpcServer extends Thread {
             serverBootstrap.childHandler(new ChannelInitializer<SocketChannel>() {
                 @Override
                 protected void initChannel(SocketChannel ch) throws Exception {
-//                    ch.pipeline().addLast(new ProcotolFrameDecoder());
-                    ch.pipeline().addLast(LOGGING_HANDLER);
-                    ch.pipeline().addLast(MESSAGE_CODEC);
+                    ch.pipeline().addLast(new ProcotolFrameDecoder());
+//                    ch.pipeline().addLast(LOGGING_HANDLER);
+                    ch.pipeline().addLast(new Encode());
+                    ch.pipeline().addLast(new Decode());
+//                    ch.pipeline().addLast(MESSAGE_CODEC);
                     ch.pipeline().addLast(RPC_REQUEST_HANDLER);
                 }
             });

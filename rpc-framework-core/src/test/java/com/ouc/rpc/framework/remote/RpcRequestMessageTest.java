@@ -13,7 +13,7 @@ public class RpcRequestMessageTest {
     @Test
     void testSetGet() {
         RpcRequestMessage rpcRequestMessage = new RpcRequestMessage();
-        rpcRequestMessage.setSequenceId("1");
+        rpcRequestMessage.setSequenceId(2376L);
         log.info("rpc request id is {}", rpcRequestMessage.getSequenceId());
     }
 

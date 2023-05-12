@@ -181,26 +181,29 @@ public class ZooKeeperClient {
      */
     public void subscribeChildChange(String childPath, String referenceServiceName) throws Exception {
         log.info("start subscription service instance: [" + childPath + "]");
+
         PathChildrenCache pathChildrenCache = new PathChildrenCache(zkClient, childPath, true);
+
         pathChildrenCache.getListenable().addListener((client, event) -> {
             // 监听器回调函数
             switch (event.getType()) {
                 case CHILD_ADDED:
-                    ReferenceServiceUtil.get(referenceServiceName).getReferences();
+                    ReferenceServiceUtil.get(referenceServiceName).updateReferences();
                     log.info("service instance changed: ==> instance add ==> {}", ReferenceServiceUtil.get(referenceServiceName));
                     break;
                 case CHILD_REMOVED:
-                    ReferenceServiceUtil.get(referenceServiceName).getReferences();
+                    ReferenceServiceUtil.get(referenceServiceName).updateReferences();
                     log.info("service instance changed: ==> instance remove ==> {}", ReferenceServiceUtil.get(referenceServiceName));
                     break;
                 case CHILD_UPDATED:
-                    ReferenceServiceUtil.get(referenceServiceName).getReferences();
+                    ReferenceServiceUtil.get(referenceServiceName).updateReferences();
                     log.info("service instance changed: ==> instance update ==> {}", ReferenceServiceUtil.get(referenceServiceName));
                     break;
                 default:
                     break;
             }
         });
+
         pathChildrenCache.start(PathChildrenCache.StartMode.POST_INITIALIZED_EVENT);
     }
 

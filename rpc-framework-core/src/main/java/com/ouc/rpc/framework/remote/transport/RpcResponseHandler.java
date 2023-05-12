@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @ChannelHandler.Sharable
 public class RpcResponseHandler extends SimpleChannelInboundHandler<RpcResponseMessage> {
 
-    public static final Map<String, Promise<Object>> PROMISES = new ConcurrentHashMap<>();
+    public static final Map<Long, Promise<Object>> PROMISES = new ConcurrentHashMap<>();
 
 
     @Override
@@ -26,6 +26,7 @@ public class RpcResponseHandler extends SimpleChannelInboundHandler<RpcResponseM
         log.info("get rpc response: {}", msg);
         // 拿到Promise对象 | 将结果进行存储 | 促使主线程取消阻塞状态获得结果
         Promise<Object> promise = PROMISES.remove(msg.getSequenceId());
+
         if (promise != null) {
             Boolean success = msg.getIsSuccess();
             if (success) {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!--    应用名称-->
+    <dubbo:application name="service_provider_dubbo"/>
+    <!--    注册地址-->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+    <!--    支持的协议-->
+    <dubbo:protocol name="dubbo" port="20890" serialization="hessian2"/>
+    <!--    提供的服务-->
+    <bean id="greetingService" class="com.ouc.rpc.framework.dubboprovider.api.GreetingServiceDubboImpl"/>
+    <dubbo:service interface="com.ouc.rpc.framework.api.service.GreetingService" ref="greetingService"/>
+
+    <bean id="secondService" class="com.ouc.rpc.framework.dubboprovider.api.SecondServiceDubboImpl"/>
+    <dubbo:service interface="com.ouc.rpc.framework.api.service.SecondService" ref="secondService"/>
+</beans>
