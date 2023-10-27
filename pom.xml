@@ -13,6 +13,7 @@
         <module>rpc-framework-benchmark</module>
         <module>rpc-framework-api</module>
         <module>rpc-framework-provider-dubbo</module>
+        <module>rpc-framework-provider-rmi</module>
     </modules>
 
 

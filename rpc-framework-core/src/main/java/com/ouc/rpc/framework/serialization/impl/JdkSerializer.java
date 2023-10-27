@@ -61,9 +61,13 @@ public class JdkSerializer implements Serializer {
 
     private final ByteArrayOutputStream byteArrayOutputStream;
 
-    public JdkSerializer() throws IOException {
+    public JdkSerializer() {
         byteArrayOutputStream = new ByteArrayOutputStream();
-        outputStream = new ObjectOutputStream(byteArrayOutputStream);
+        try {
+            outputStream = new ObjectOutputStream(byteArrayOutputStream);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

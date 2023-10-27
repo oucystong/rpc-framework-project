@@ -14,7 +14,10 @@ public class GreetingServiceDubboImpl implements GreetingService {
 
     @Override
     public String functionTypeServiceBase(String name) {
-        return "dubbo hello, " + name;
+//        return "dubbo framework , " + name;
+//        return name;
+//        return name + " message from dubbo framework!";
+        return name;
     }
 
     @Override

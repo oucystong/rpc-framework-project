@@ -14,7 +14,11 @@ public class GreetingServiceImpl implements GreetingService {
 
     @Override
     public String functionTypeServiceBase(String name) {
-        return "hello," + name;
+//        return "srpc framework , " + name;
+//        return name;
+//        return "the message from "
+//        return name + " message from srpc framework!";
+        return name;
     }
 
     @Override

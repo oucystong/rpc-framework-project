@@ -12,9 +12,12 @@
     <!--    支持的协议-->
     <dubbo:protocol name="dubbo" port="20890" serialization="hessian2"/>
     <!--    提供的服务-->
-    <bean id="greetingService" class="com.ouc.rpc.framework.dubboprovider.api.GreetingServiceDubboImpl"/>
-    <dubbo:service interface="com.ouc.rpc.framework.api.service.GreetingService" ref="greetingService"/>
+    <!--    <bean id="greetingService" class="com.ouc.rpc.framework.dubboprovider.api.GreetingServiceDubboImpl"/>-->
+    <!--    <dubbo:service interface="com.ouc.rpc.framework.api.service.GreetingService" ref="greetingService"/>-->
 
-    <bean id="secondService" class="com.ouc.rpc.framework.dubboprovider.api.SecondServiceDubboImpl"/>
-    <dubbo:service interface="com.ouc.rpc.framework.api.service.SecondService" ref="secondService"/>
+    <bean id="novelAuthorService" class="com.ouc.rpc.framework.dubboprovider.api.NovelAuthorServiceDubboImpl"/>
+    <dubbo:service interface="com.ouc.rpc.framework.api.service.NovelAuthorService" ref="novelAuthorService" actives="100000000"/>
+
+    <!--    <bean id="secondService" class="com.ouc.rpc.framework.dubboprovider.api.SecondServiceDubboImpl"/>-->
+    <!--    <dubbo:service interface="com.ouc.rpc.framework.api.service.SecondService" ref="secondService"/>-->
 </beans>

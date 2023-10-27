@@ -59,5 +59,6 @@ public class Encode extends MessageToByteEncoder<Message> {
         }
         // 向开辟的空间写入协议数据包
         out.writeBytes(buffer);
+        buffer.release();
     }
 }

@@ -17,13 +17,24 @@
     <!--  服务注册地址  -->
     <srpc:zk address="127.0.0.1:2181"></srpc:zk>
     <!--    引用服务-->
-    <srpc:reference id="greetingService" name="com.ouc.rpc.framework.api.service.GreetingService"
+    <!--    <srpc:reference id="greetingService" name="com.ouc.rpc.framework.api.service.GreetingService"-->
+    <!--                    rpc-framework="srpc"></srpc:reference>    -->
+    <!--    <srpc:reference id="greetingService" name="com.ouc.rpc.framework.api.service.GreetingService"-->
+    <!--                    rpc-framework="srpc"></srpc:reference>-->
+
+    <srpc:reference id="novelAuthorService" name="com.ouc.rpc.framework.api.service.NovelAuthorService"
                     rpc-framework="dubbo"></srpc:reference>
 
-    <srpc:reference id="secondService" name="com.ouc.rpc.framework.api.service.SecondService"></srpc:reference>
+    <!--    <srpc:reference id="novelAuthorService"-->
+    <!--                    name="com.ouc.rpc.framework.api.service.NovelAuthorService"></srpc:reference>-->
+    <!--    <srpc:reference id="authorPublicationPriceService"-->
+    <!--                    name="com.ouc.rpc.framework.api.service.AuthorPublicationPriceService"></srpc:reference>-->
+    <!--    <srpc:reference id="secondService" name="com.ouc.rpc.framework.api.service.SecondService"></srpc:reference>-->
+    <!--    <srpc:reference id="strService" name="com.ouc.rpc.framework.api.performance.StrService"-->
+    <!--                    rpc-framework="srpc"></srpc:reference>-->
     <!--    动态代理方式-->
-    <srpc:proxy id="proxy" type="jdk"></srpc:proxy>
+    <!--    <srpc:proxy id="proxy" type="javassist"></srpc:proxy>-->
     <!--    客户端负载均衡方式-->
-    <srpc:client id="client" load-balance="roundrobin"></srpc:client>
+    <!--    <srpc:client id="client" load-balance="roundrobin"></srpc:client>-->
 
 </beans>

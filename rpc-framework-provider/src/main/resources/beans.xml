@@ -19,11 +19,25 @@
     <!--  服务端  -->
     <srpc:server port="9220"></srpc:server>
     <!--    暴露服务-->
-    <srpc:service id="greetingService" name="com.ouc.rpc.framework.api.service.GreetingService"
-                  impl="com.ouc.rpc.framework.provider.api.GreetingServiceImpl" serialization="jdk" net-protocol="srpc"></srpc:service>
+<!--    <srpc:service id="greetingService" name="com.ouc.rpc.framework.api.service.GreetingService"-->
+<!--                  impl="com.ouc.rpc.framework.provider.api.GreetingServiceImpl" serialization="hessian2"-->
+<!--                  net-protocol="srpc"></srpc:service>-->
 
-    <srpc:service id="secondService" name="com.ouc.rpc.framework.api.service.SecondService"
-                  impl="com.ouc.rpc.framework.provider.api.SecondServiceImpl"></srpc:service>
+    <srpc:service id="novelAuthorService" name="com.ouc.rpc.framework.api.service.NovelAuthorService"
+                  impl="com.ouc.rpc.framework.provider.api.NovelAuthorServiceImpl" serialization="hessian2"
+                  net-protocol="srpc"></srpc:service>
+
+    <!--    <srpc:service id="secondService" name="com.ouc.rpc.framework.api.service.SecondService"-->
+    <!--                  impl="com.ouc.rpc.framework.provider.api.SecondServiceImpl"></srpc:service>-->
+
+    <!--    <srpc:service id="strService" name="com.ouc.rpc.framework.api.performance.StrService"-->
+    <!--                  impl="com.ouc.rpc.framework.provider.api.StrServiceImpl"></srpc:service>-->
+<!--    <srpc:service id="novelAuthorService" name="com.ouc.rpc.framework.api.service.NovelAuthorService"-->
+<!--                  impl="com.ouc.rpc.framework.provider.api.NovelAuthorServiceImpl"></srpc:service>-->
+
+<!--    <srpc:service id="authorPublicationPriceService"-->
+<!--                  name="com.ouc.rpc.framework.api.service.AuthorPublicationPriceService"-->
+<!--                  impl="com.ouc.rpc.framework.provider.api.AuthorPublicationPriceServiceImpl"></srpc:service>-->
 
 </beans>
 

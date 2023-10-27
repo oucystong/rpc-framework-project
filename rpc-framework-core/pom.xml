@@ -66,6 +66,13 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.7</version>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.fasterxml.jackson.core</groupId>-->
+<!--            <artifactId>jackson-databind</artifactId>-->
+<!--            <version>2.12.4</version>-->
+<!--        </dependency>-->
+
         <!--        实现XML序列化和反序列化-->
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
@@ -156,6 +163,59 @@
             <artifactId>hutool-core</artifactId>
             <version>5.8.11</version>
         </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.apache.axis/axis -->
+        <dependency>
+            <groupId>org.apache.axis</groupId>
+            <artifactId>axis</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/wsdl4j/wsdl4j -->
+        <dependency>
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+            <version>1.6.3</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.jena/jena-core -->
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>jena-core</artifactId>
+            <version>3.13.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.didion/jwnl -->
+<!--        <dependency>-->
+<!--            <groupId>net.didion</groupId>-->
+<!--            <artifactId>jwnl</artifactId>-->
+<!--            <version>1.4.1</version>-->
+<!--        </dependency>-->
+
+
+
+
+
+
+
+
+
+
 
         <!--        支持同Dubbo的协议对齐-->
 <!--        <dependency>-->
